@@ -11,6 +11,7 @@ import {
 import { workDir } from './utils';
 import Enquirer from 'enquirer';
 import Handlebars from 'handlebars';
+import fs from 'node:fs/promises';
 
 const { prompt } = Enquirer;
 
@@ -50,6 +51,12 @@ const buildTemplatePrompts: BuildTemplatePromptsFn = (template) => {
   return prompts;
 };
 
+const getFilename = (filepath: string, answers: object) => {
+  const filename = filepath.split('\\').pop()?.split('/').pop()?.replace('.template', '');
+
+  return filename?.replace('{name}', answers.name);
+};
+
 (async () => {
   const filepath = workDir('templates.config.js');
   const config = await getConfig(filepath);
@@ -60,5 +67,14 @@ const buildTemplatePrompts: BuildTemplatePromptsFn = (template) => {
 
   const answer = await prompt(questions as any);
 
-  console.log(answer);
+  const templateFile = workDir(template.source);
+  const filename = getFilename(template.source, answer);
+  const dest = workDir(template.dest);
+  const templateContent = await fs.readFile(templateFile, 'utf-8');
+
+  const handlebarsTemplate = Handlebars.compile(templateContent);
+  const compiledTemplate = handlebarsTemplate(answer);
+  // console.log(dest + '/' + filename);
+
+  fs.writeFile(dest + '/' + filename, compiledTemplate);
 })();
