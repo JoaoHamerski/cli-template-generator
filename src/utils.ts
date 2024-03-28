@@ -10,3 +10,7 @@ export const workDir: WorkDirFn = (joinPath) => {
 
   return path.join(cwd(), joinPath);
 };
+
+export const getFilename = (filepath: string) => {
+  return filepath.split('/').pop() || null;
+};
