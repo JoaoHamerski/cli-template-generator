@@ -33,16 +33,12 @@ export default class TemplateGenerator {
   }
 
   async askForPrompts() {
-    this.answers = await prompt(this.templatePrompts as any);
+    this.answers = await prompt(this.prompts as any);
 
     return this;
   }
 
-  build() {
-    return new TemplateBuilder(this);
-  }
-
-  get templatePrompts(): PromptBuilt[] {
+  get prompts(): PromptBuilt[] {
     if (!this.template) {
       return [];
     }
@@ -52,5 +48,9 @@ export default class TemplateGenerator {
       type,
       message,
     }));
+  }
+
+  build() {
+    return new TemplateBuilder(this);
   }
 }

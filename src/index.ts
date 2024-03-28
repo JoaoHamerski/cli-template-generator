@@ -12,5 +12,5 @@ import TemplateGenerator from './TemplateGenerator';
 
   const builder = generator.build();
 
-  console.log(builder.dest);
+  console.log(builder.createTemplate());
 })();
