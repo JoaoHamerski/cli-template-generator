@@ -1,16 +1,24 @@
 #!/usr/bin/env node
-export type { TemplatesFileConfig as TemplatesConfig } from './types';
+export type { TemplatesFileConfig } from './types';
 import templateConfig from './template-config';
 import TemplateGenerator from './TemplateGenerator';
 
-(async () => {
+const execute = async () => {
   const config = await templateConfig();
-  const generator = new TemplateGenerator(config);
 
+  const generator = new TemplateGenerator(config);
   await generator.askForTemplate();
   await generator.askForPrompts();
 
   const builder = generator.build();
 
-  console.log(builder.createTemplate());
+  builder.createTemplate();
+};
+
+(async () => {
+  try {
+    await execute();
+  } catch (e) {
+    //
+  }
 })();
