@@ -4,7 +4,7 @@ export interface Prompt {
   options?: string[];
 }
 
-export type Answer = Record<string, string>;
+export type Answers = Record<string, string>;
 
 export interface PromptBuilt extends Prompt {
   name: string;
