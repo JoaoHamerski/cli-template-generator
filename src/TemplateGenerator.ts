@@ -1,4 +1,4 @@
-import { Template, TemplateConfig, Prompt, PromptBuilt, Answer } from './types';
+import type { Template, TemplateConfig, Prompt, PromptBuilt, Answers } from './types';
 import Enquirer from 'enquirer';
 import { map } from 'lodash-es';
 import TemplateBuilder from './TemplateBuilder';
@@ -8,7 +8,7 @@ const { prompt } = Enquirer;
 export default class TemplateGenerator {
   config: TemplateConfig;
   template: Template | null;
-  answers: Answer | null;
+  answers: Answers | null;
 
   constructor(config: TemplateConfig) {
     this.config = config;
