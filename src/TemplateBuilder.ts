@@ -1,11 +1,7 @@
 import TemplateGenerator from './TemplateGenerator';
-import { getFilename, workDir } from './utils';
-import Handlebars from 'handlebars';
+import { getFilename, getFilepathDir, workDir } from './utils';
 import fs from 'node:fs';
-
-const compile = (input: string, data: any) => {
-  return Handlebars.compile(input)(data);
-};
+import { compile } from './utils';
 
 export default class TemplateBuilder {
   generator: TemplateGenerator;
@@ -15,6 +11,12 @@ export default class TemplateBuilder {
   }
 
   createTemplate() {
+    const destDir = getFilepathDir(this.dest!);
+
+    if (!fs.existsSync(destDir)) {
+      fs.mkdirSync(destDir);
+    }
+
     fs.writeFileSync(this.dest!, this.compiledTemplate!);
   }
 
