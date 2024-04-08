@@ -1,13 +1,16 @@
-import type { TemplateConfigFn, TemplatesFileConfig } from './types';
+import type { TemplatesFileConfig } from './types';
 import { workDir } from './utils';
 
-const templateConfig: TemplateConfigFn = async () => {
+const templateConfig = async () => {
   const filepath = workDir('templates.config.js');
-  const { default: config } = (await import(filepath)) as { default: TemplatesFileConfig };
+  const configFile = (await import(filepath)) as { default: TemplatesFileConfig };
+  const {
+    default: { templates },
+  } = configFile;
 
   return {
     filepath,
-    templates: config.templates,
+    templates,
   };
 };
 
