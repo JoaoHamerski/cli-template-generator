@@ -1,0 +1,6 @@
+/** @type {import('@joaohamerski/cli-template-generator').TemplatesConfig} */
+module.exports = {
+  templates: [
+    // Your config goes here
+  ]
+};
