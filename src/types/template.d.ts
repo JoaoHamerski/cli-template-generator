@@ -21,8 +21,14 @@ export interface TemplatesFileConfig {
   templates: Template[];
 }
 
-export type TemplateConfigFn = () => Promise<TemplateConfig>;
 export type TemplateConfig = {
   filepath: string;
   templates: Template[];
+};
+
+export type GeneratorFn = (config: TemplateConfig) => Promise<Generator>;
+export type Generator = {
+  template: Template;
+  prompts: PromptBuilt[];
+  answers: Answers;
 };
