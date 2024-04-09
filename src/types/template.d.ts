@@ -1,7 +1,7 @@
 export interface Prompt {
-  type: 'input' | 'autocomplete';
+  type: 'input';
   message?: string;
-  options?: string[];
+  // options?: string[];
 }
 
 export type Answers = Record<string, string>;
