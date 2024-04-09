@@ -1,10 +1,12 @@
 {
   "name": "@joaohamerski/cli-template-generator",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A general purpose CLI template generator",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "files": ["/dist"],
+  "files": [
+    "/dist"
+  ],
   "bin": {
     "template-generator": "dist/index.js"
   },
