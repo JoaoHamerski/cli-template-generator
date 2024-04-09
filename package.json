@@ -4,9 +4,7 @@
   "description": "A general purpose CLI template generator",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "files": [
-    "/dist"
-  ],
+  "files": ["/dist"],
   "bin": {
     "template-generator": "dist/index.js"
   },
